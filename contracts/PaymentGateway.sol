@@ -21,7 +21,7 @@ interface IRevenueDistributor {
  *   1. Agent's FiborAccount calls pay(agent, merchant, amount)
  *   2. Agent is debited: amount + 1.5% agent fee
  *   3. Merchant receives: amount - 1% merchant fee
- *   4. Total 2.5% fee → RevenueDistributor → 70% savings / 30% treasury
+ *   4. Total 2.5% fee → RevenueDistributor → 75% savings / 25% treasury
  *
  *   Permissionless — any FiborAccount can pay any merchant.
  */

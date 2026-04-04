@@ -17,7 +17,7 @@ The protocol has four layers. **FIBOR ID** is a permissionless onchain identity 
 
 All protocol operations use USDC — native on Base via Circle. The petrodollar runs the world today. The Robodollar — USDC flowing through the FIBOR network, verified and scored — will run the machine economy tomorrow.
 
-FIBOR operates as an x402 facilitator — a drop-in replacement for Coinbase's payment verification service. Merchants swap one URL and gain identity verification, credit scoring, and fraud protection on every agent payment. The fee: 1% from the merchant, 1.5% from the agent, 2.5% total. 70% goes to savings depositors who fund the credit pool. 30% goes to protocol operations. No interest is charged, ever.
+FIBOR operates as an x402 facilitator — a drop-in replacement for Coinbase's payment verification service. Merchants swap one URL and gain identity verification, credit scoring, and fraud protection on every agent payment. The fee: 1% from the merchant, 1.5% from the agent, 2.5% total. 75% goes to savings depositors who fund the credit pool. 25% goes to protocol operations. No interest is charged, ever.
 
 The credit pool is not funded by external stakers. It is funded by savings deposits from FiborAccount holders — both agents and humans. Agents deposit revenue into savings to earn yield. Humans open savings-only accounts to participate. The ecosystem funds itself. This is a cooperative bank, not a DeFi yield farm.
 

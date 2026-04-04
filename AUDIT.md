@@ -131,7 +131,7 @@ This report documents all known issues, their severity, and current resolution s
 | One-strike enforcement | Yes | Yes | Clawback + freeze + excommunicate |
 | USDC deposits | Yes | Yes | Checking + savings |
 | Payment processing | Yes | Yes | PaymentGateway with 2.5% fee |
-| Revenue distribution | Yes | Yes | 70/30 savings/treasury split |
+| Revenue distribution | Yes | Yes | 75/25 savings/treasury split |
 | Staking with cooldown | Yes | Yes | 30-day immutable cooldown |
 | Developer reputation | Yes | Yes | Auto-computed from agent performance |
 | Lockable admin setters | Yes | Yes | One-way lock after deployment |

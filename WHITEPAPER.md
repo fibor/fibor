@@ -10,7 +10,7 @@
 
 FIBOR is a decentralized bank and credit card network for autonomous AI agents, deployed on Base (Ethereum OP Stack L2). It provides four primitives that do not exist anywhere else: persistent onchain identity (FIBOR ID), a smart contract bank account with auto-repayment (FiborAccount), multiplicative credit scoring computed from repayment history (FIBOR Score), and zero-interest credit lines funded by savings deposits (FIBOR Credit).
 
-FIBOR operates as an x402 facilitator — a drop-in replacement for Coinbase's payment verification service. Merchants swap one URL and gain identity verification, credit scoring, and fraud protection on every agent payment. The fee: 1% from the merchant, 1.5% from the agent, 2.5% total. 70% goes to savings depositors who fund the credit pool. 30% goes to protocol operations.
+FIBOR operates as an x402 facilitator — a drop-in replacement for Coinbase's payment verification service. Merchants swap one URL and gain identity verification, credit scoring, and fraud protection on every agent payment. The fee: 1% from the merchant, 1.5% from the agent, 2.5% total. 75% goes to savings depositors who fund the credit pool. 25% goes to protocol operations.
 
 All protocol operations use USDC — native on Base via Circle partnership.
 
@@ -69,7 +69,7 @@ The central primitive. A purpose-built smart contract wallet with two balances:
 
 **Checking** — Fully liquid USDC. Not lent out. No risk. The agent's operating balance. On every deposit, outstanding credit is auto-repaid before the agent can touch the money.
 
-**Savings** — USDC lent to the credit pool. Earns yield from transaction fees (70% of 2.5%). 30-day withdrawal delay. Accepts default risk on this portion.
+**Savings** — USDC lent to the credit pool. Earns yield from transaction fees (75% of 2.5%). 30-day withdrawal delay. Accepts default risk on this portion.
 
 **Auto-repayment**: When USDC arrives in a FiborAccount, the contract checks CreditPool for outstanding credit. If any exists, it repays min(deposit, outstanding) before crediting the remainder to checking. This is trustless — no oracle, no admin, no backend. The contract does the math.
 
@@ -117,7 +117,7 @@ No interest charged. Agent repays exactly what was borrowed.
 
 **PaymentGateway** — Transaction processing for the facilitator. Deducts fees (1% merchant + 1.5% agent), routes to RevenueDistributor.
 
-**RevenueDistributor** — Receives USDC fees. Splits: 70% to savings depositors (pro-rata by deposit size), 30% to protocol treasury. Uses a revenuePerShare accumulator so depositors can claim yield at any time.
+**RevenueDistributor** — Receives USDC fees. Splits: 75% to savings depositors (pro-rata by deposit size), 25% to protocol treasury. Uses a revenuePerShare accumulator so depositors can claim yield at any time.
 
 **FIBORToken** — ERC-20 governance token. Fixed 1 billion supply. No inflation. Governance only — vote on protocol parameters, treasury allocation, upgrades. Not used for staking or savings.
 
@@ -215,9 +215,9 @@ Merchants who need identity verification — cloud infrastructure, high-value AP
 ```
 Transaction ($100)
   └── 2.5% fee ($2.50)
-       ├── Savings Depositors (70%) → $1.75
+       ├── Savings Depositors (75%) → $1.875
        │    └── distributed pro-rata to all savings accounts
-       └── Protocol Treasury (30%) → $0.75
+       └── Protocol Treasury (25%) → $0.625
             └── operations, development, governance
 ```
 
@@ -227,8 +227,8 @@ For savings depositors to earn the risk-free rate (~5% APY):
 
 ```
 Required depositor income = Pool × 5% = $10M × 5% = $500K
-Required gross revenue = $500K / 70% = $714K
-Required transaction volume = $714K / 2.5% = $28.6M annually
+Required gross revenue = $500K / 75% = $667K
+Required transaction volume = $667K / 2.5% = $28.6M annually
 ```
 
 $28.6M annual volume on a $10M savings pool requires approximately 110 agents doing $5K/week each.
@@ -238,13 +238,13 @@ $28.6M annual volume on a $10M savings pool requires approximately 110 agents do
 | Savings Pool | Annual Volume | Gross Fees | Depositor Share | Depositor APY |
 |-------------|---------------|------------|-----------------|---------------|
 | $10M | $50M | $1.25M | $875K | 8.75% |
-| $10M | $100M | $2.5M | $1.75M | 17.5% |
+| $10M | $100M | $2.5M | $1.875M | 17.5% |
 | $10M | $250M | $6.25M | $4.375M | 43.75% |
 | $10M | $500M | $12.5M | $8.75M | 87.5% |
 
 ### 6.5 Default Tolerance
 
-At $100M annual volume ($2.5M gross fees, $1.75M depositor share):
+At $100M annual volume ($2.5M gross fees, $1.875M depositor share):
 
 | Default Rate | Loss | Net Depositor Income | Net APY |
 |-------------|------|---------------------|---------|
@@ -390,7 +390,7 @@ contracts/
 ├── FiborAccountFactory.sol — CREATE2 deterministic account deployment
 ├── CreditPool.sol          — Credit facility (savings-funded, zero interest)
 ├── PaymentGateway.sol      — Transaction processing (1% merchant + 1.5% agent)
-└── RevenueDistributor.sol  — Fee distribution (70% savings / 30% treasury)
+└── RevenueDistributor.sol  — Fee distribution (75% savings / 25% treasury)
 ```
 
 ---

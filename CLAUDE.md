@@ -127,9 +127,9 @@ No appeals. No exceptions.
 ```
 Transaction ($100 USDC)
   └── 2.5% fee ($2.50)
-       ├── Savings Depositors (70%) → $1.75
+       ├── Savings Depositors (75%) → $1.875
        │    └── distributed pro-rata to all savings accounts
-       └── Protocol Treasury (30%) → $0.75
+       └── Protocol Treasury (25%) → $0.625
             └── operations, development, governance
 ```
 
@@ -180,7 +180,7 @@ contracts/
 ├── FiborAccountFactory.sol — CREATE2 deterministic account deployment
 ├── CreditPool.sol          — Credit facility (savings-funded, zero interest, 30d pacts)
 ├── PaymentGateway.sol      — Transaction processing (1% merchant + 1.5% agent)
-└── RevenueDistributor.sol  — Fee distribution (70% savings depositors / 30% treasury)
+└── RevenueDistributor.sol  — Fee distribution (75% savings depositors / 25% treasury)
 ```
 
 All contracts use a one-way `lock()` gate on admin setters. After deployment wiring is complete, the owner calls `lock()` and all admin functions are permanently disabled. No admin keys retained.

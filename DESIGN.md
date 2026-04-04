@@ -89,13 +89,13 @@ FiborAccount provides all the enforcement needed: `withdraw()` blocks amounts ex
 
 ---
 
-## 5. 70/30 Fee Split (Stakers / Treasury)
+## 5. 75/25 Fee Split (Stakers / Treasury)
 
-**Decision**: 70% of all transaction fees go to stakers who fund the credit pool. 30% goes to the protocol treasury for operations.
+**Decision**: 75% of all transaction fees go to stakers who fund the credit pool. 30% goes to the protocol treasury for operations.
 
 **Rationale**: The credit pool IS the product. Without staked capital, there are no credit lines. Without credit lines, there's no agent commerce. Without commerce, there are no fees. The split must aggressively favor stakers to attract the capital that makes everything work.
 
-70/30 is not arbitrary. At moderate transaction volumes ($100M annual on a $10M pool), 70% yields ~17.5% APY for stakers — competitive with DeFi yields without the smart contract risk of complex protocols. 30% provides ~$750K annually for protocol operations — sufficient for a lean team.
+75/25 is not arbitrary. At moderate transaction volumes ($100M annual on a $10M pool), 75% yields ~18.75% APY for stakers — competitive with DeFi yields without the smart contract risk of complex protocols. 25% provides ~$625K annually for protocol operations — sufficient for a lean team.
 
 **Alternatives considered**:
 - *50/50 split*: More treasury runway but staker APY drops to ~12.5%. Less competitive for capital attraction.
@@ -104,7 +104,7 @@ FiborAccount provides all the enforcement needed: `withdraw()` blocks amounts ex
 
 **Counterpoints**:
 - "30% treasury is too little for early-stage operations." — True. Early operations should be funded by token sales or grants, not protocol revenue. The treasury share is for sustained operations, not bootstrapping.
-- "Should the split be governance-adjustable?" — Currently hardcoded as constants (`STAKER_SHARE_BPS = 7000`). Future governance could adjust this, but changing it requires a contract upgrade. This is intentional — the split should be stable and predictable, not subject to political dynamics.
+- "Should the split be governance-adjustable?" — Currently hardcoded as constants (`DEPOSITOR_SHARE_BPS = 7500`). Future governance could adjust this, but changing it requires a contract upgrade. This is intentional — the split should be stable and predictable, not subject to political dynamics.
 
 ---
 
@@ -266,7 +266,7 @@ Specifically:
 - **Staking cooldown** is a constant (30 days). No `setCooldown()` function exists.
 - **Developer reputation** is auto-computed from agent performance. No manual override.
 - **Contract wiring** (which contracts can call which) is set during deployment, then `lock()` is called. All setter functions revert once locked. The lock is a one-way gate — there is no `unlock()`.
-- **Fee parameters** (2.5%, 70/30 split) are constants. Not adjustable.
+- **Fee parameters** (2.5%, 75/25 split) are constants. Not adjustable.
 - **Default enforcement** is permissionless — anyone can call `declareDefault()`.
 - **Identity registration** is permissionless — anyone can call `register()`.
 - **Credit issuance** is self-service — any qualifying agent can call `issuePact()`.

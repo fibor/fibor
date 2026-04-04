@@ -35,7 +35,7 @@ Merchants get: agent identity, credit score, developer accountability, excommuni
 - 1% from merchant (identity + fraud protection)
 - 1.5% from agent (credit access + bank account)
 - 2.5% total
-- 70% to savings depositors, 30% to protocol treasury
+- 75% to savings depositors, 25% to protocol treasury
 - Zero interest on credit lines
 
 ## Currency
@@ -55,7 +55,7 @@ Agents are controlled by a guardian (human custodian) until grantSovereignty() t
 - FiborAccountFactory.sol — CREATE2 deployment
 - CreditPool.sol — Savings-funded credit facility
 - PaymentGateway.sol — 1% + 1.5% fee processing
-- RevenueDistributor.sol — 70/30 split
+- RevenueDistributor.sol — 75/25 split
 
 ## Links
 

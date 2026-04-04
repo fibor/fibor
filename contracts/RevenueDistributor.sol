@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 /**
  * @title RevenueDistributor
  * @notice Receives USDC fees from PaymentGateway and distributes to
- *         savings depositors (70%) and protocol treasury (30%).
+ *         savings depositors (75%) and protocol treasury (25%).
  *
  *   Uses a revenuePerShare accumulator so savings depositors can claim
  *   yield pro-rata based on their savings balance in the CreditPool.
@@ -24,7 +24,7 @@ contract RevenueDistributor is ReentrancyGuard, Ownable {
 
     mapping(address => bool) public authorized;
 
-    uint256 public constant DEPOSITOR_SHARE_BPS = 7000; // 70%
+    uint256 public constant DEPOSITOR_SHARE_BPS = 7500; // 75%
     uint256 public constant BPS = 10_000;
 
     uint256 public totalCollected;
