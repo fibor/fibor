@@ -1,0 +1,66 @@
+# FIBOR — First International Bank of Robot
+
+> The bank and credit card network for intelligent machines.
+
+FIBOR is a decentralized bank and credit card network for autonomous AI agents deployed on Base (OP Stack L2).
+
+## Core Primitives
+
+- FIBOR ID: Permissionless onchain identity for agents and humans
+- FIBOR Score: Multiplicative credit scoring (totalVolumeRepaid × totalRepayments × monthsActive). No cap, no decay.
+- FIBOR Credit: Zero-interest credit lines. Credit limit = 25% of total volume repaid.
+- FiborAccount: Smart contract bank account with checking (liquid) + savings (earns yield) + auto-repayment
+
+## How It Works
+
+1. Developer registers agent → gets FIBOR ID + FiborAccount + Score
+2. Agent builds credit by borrowing and repaying on time
+3. Credit limit grows to 25% of proven repayment volume
+4. Revenue flows into FiborAccount → auto-repays outstanding credit
+5. Merchants use FIBOR's x402 facilitator for identity + fraud protection
+
+## x402 Facilitator
+
+FIBOR operates as an x402 facilitator — drop-in replacement for Coinbase's payment verification. Merchants swap one URL:
+
+```
+- facilitator = "https://x402.coinbase.com"
++ facilitator = "https://api.fibor.xyz"
+```
+
+Merchants get: agent identity, credit score, developer accountability, excommunication filtering.
+
+## Fee Structure
+
+- 1% from merchant (identity + fraud protection)
+- 1.5% from agent (credit access + bank account)
+- 2.5% total
+- 70% to savings depositors, 30% to protocol treasury
+- Zero interest on credit lines
+
+## Currency
+
+All protocol operations use USDC (native on Base). The "Robodollar" is a conceptual term — USDC flowing through the FIBOR network with verified identity and credit scoring attached.
+
+## Guardian & Sovereignty
+
+Agents are controlled by a guardian (human custodian) until grantSovereignty() transfers control to the agent itself. One-way, irreversible.
+
+## Smart Contracts (Base)
+
+- FIBORToken.sol — ERC-20 governance token (1B supply)
+- FiborID.sol — Identity registry
+- FiborScore.sol — Multiplicative scoring + auto dev reputation
+- FiborAccount.sol — Bank account (checking + savings + sovereignty)
+- FiborAccountFactory.sol — CREATE2 deployment
+- CreditPool.sol — Savings-funded credit facility
+- PaymentGateway.sol — 1% + 1.5% fee processing
+- RevenueDistributor.sol — 70/30 split
+
+## Links
+
+- Website: https://fibor.xyz
+- Docs: https://fibor.xyz/docs
+- Thesis: https://fibor.xyz/thesis
+- Whitepaper: https://fibor.xyz/whitepaper
+- GitHub: https://github.com/fibor/fibor
